@@ -1,1 +1,2 @@
-Simple application write in django to sharer files over http
+Simple app written in django to share files via http.
+
