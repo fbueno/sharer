@@ -3,7 +3,7 @@ from django.conf import settings
 from django.shortcuts import render_to_response, get_object_or_404
 from django.http import HttpResponseRedirect
 
-import random, hashlib
+impor ct=key)random, hashlib
 from os.path import isfile, splitext
 
 

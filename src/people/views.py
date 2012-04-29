@@ -11,17 +11,21 @@ import random, hashlib, datetime
 from django_mailman.models import List
 from people.forms import RegForm, EmailForm
 from people.models import Profile
+from people_exception import models
 
 def register(request):
     if not request.method == 'POST':
         return render_to_response('people/register.html', {'emailform': EmailForm() })
 
     maillist=List(name=settings.MAILLIST_NAME, password=settings.MAILLIST_PASSWORD, email=settings.MAILLIST_EMAIL, main_url=settings.MAILLIST_URL, encoding='iso-8859-1')
-    ok = False
-    for mail in maillist.get_all_members():
-        if request.POST.get('email') in mail:
-            ok = True
-            break
+    if models.Person.objects.filter(email__exact=request.POST.get('email')):
+        ok = True
+    else:
+        ok = False
+        for mail in maillist.get_all_members():
+            if request.POST.get('email') in mail:
+                ok = True
+                break
 
     if not ok:
         return render_to_response('people/checkuser.html', {'error': True})
