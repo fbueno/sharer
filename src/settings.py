@@ -1,6 +1,6 @@
 # Django settings for sharer project.
 
-DEBUG = False
+DEBUG = True
 TEMPLATE_DEBUG = DEBUG
 
 ADMINS = (
@@ -81,6 +81,7 @@ TEMPLATE_DIRS = (
     # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
+	#'../templates/'
 	'../templates/'
 )
 
@@ -93,8 +94,13 @@ INSTALLED_APPS = (
     'f',
     'people',
     'login',
+    'django_mailman',
     # Uncomment the next line to enable the admin:
     'django.contrib.admin',
 )
 
-MEMBERS_FILE='./list.txt'
+MAILLIST_NAME='list'
+MAILLIST_PASSWORD='apto'
+MAILLIST_EMAIL='foo'
+MAILLIST_URL='mailman.foo.com'
+
